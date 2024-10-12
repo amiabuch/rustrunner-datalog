@@ -1,96 +1,59 @@
-## AriaDocs - Documentation Template
+# Rust Learning Journey
 
-This feature-packed documentation template, built with Next.js, offers a sleek and responsive design, perfect for all your project documentation needs.
+Welcome to my Rust Learning Journey website! This project documents my progress in learning Rust programming language and features a blog that will showcase my future projects.
 
-<img src="./public/public-og.png" />
+## Quick Start
 
-<br/>
+To run this project locally:
 
-Here are all versions of the AriaDocs template, each crafted for specific use cases:
-
-
-- **Advanced Docs:** A comprehensive template offering extensive features for in-depth documentation needs. Perfect for larger projects that require detailed explanations and advanced configurations.  
-  [Explore the Advanced Docs](https://github.com/nisabmohd/Aria-Docs/tree/master)
-
-- **Lite Version:** A streamlined, no-frills template perfect for straightforward documentation needs.  
-  [Explore the Lite Version](https://github.com/nisabmohd/Aria-Docs/tree/minimal-docs)
-
-- **Version with Versioning:** A powerful option for projects that require historical documentation tracking. Manage multiple versions of your docs effortlessly.  
-  [Check out the Versioning Feature](https://github.com/nisabmohd/Aria-Docs/tree/version_docs)
-
-- **i18n Support Version (WIP):** Designed for international audiences, this version will offer comprehensive multilingual support.  
-  [Preview the i18n Support](https://github.com/nisabmohd/Aria-Docs/tree/i18n-support)
-
-### Quick Start
-
-You can create a new Ariadocs project using the command:
-
-```bash
-npx create-aria-doc <project-directory>
-```
-
-### Expected Output
-
-When you run the CLI, you can expect an output similar to this:
-
-```
-Creating a new Ariadocs project in /path/to/your/project from the master branch...
-Cloning Master (Full Documentation)...
-Ariadocs project successfully created in /path/to/your/project!
-
-Next steps:
-1. Navigate to your project directory:
-   cd <project-directory>
-2. Install dependencies:
+1. Clone the repository:
+   ```
+   git clone https://github.com/amiabuch/rustrunner-datalog.git
+   ```
+2. Navigate to the project directory:
+   ```
+   cd rustrunner-datalog
+   ```
+3. Install dependencies:
+   ```
    npm install
-3. Start the development server:
+   ```
+4. Start the development server:
+   ```
    npm run dev
-```
+   ```
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to view the site.
 
-## Getting Started
+## Tech Stack
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/nisabmohd/Aria-Docs)
-
-Got it! Here's a way to present the features in a more structured and visually appealing way using a table:
-
-
-
+- **Framework**: Next.js
+- **Styling**: Tailwind CSS, Lucide
+- **Deployment**: Vercel
 
 ## Features
 
-```plaintext
-Features
-├── MDX supported
-├── Nested pages support
-├── Blog section (New)
-├── Syntax highlighting
-├── Table of contents
-├── Pagination
-├── Search
-├── Code line highlight & code title
-├── Static site generation
-├── Custom components
-├── Light mode & dark mode
-├── Code Switcher
-├── Code copy
-└── Table of content observer highlight
-```
+- 📖 Documentation of my Rust learning process
+- 📝 Blog section for future projects
+- 🌓 Dark mode support
+- 📱 Responsive design
+
+## Blog
+
+The blog section will feature:
+- Rust projects I've worked on
+- Challenges I've faced and overcome
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## Acknowledgements
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Rust Programming Language Book](https://doc.rust-lang.org/book/)
+- [Vercel Platform](https://vercel.com/)
+- [Aria Docs Template](https://github.com/nisabmohd/Aria-Docs)
+
+---
+
+Built with ❤️ and Rust 🦀 by Ami Buch
