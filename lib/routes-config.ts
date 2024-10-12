@@ -22,7 +22,8 @@ export const ROUTES: EachRoute[] = [
     href: "/variables",
     noLink: true,
     items: [
-      { title: "Basics", href: "/variables-basics" },
+      { title: "Variables : Basics", href: "/variables-basics" },
+      { title: "Tuples", href: "/tuples" },
       
     ],
   },

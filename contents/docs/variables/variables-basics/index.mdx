@@ -1,6 +1,181 @@
 ---
-title: Basics
+title: Variable Basics
 description: This section provides a basic guide to RUST Variables
 ---
 
-# Variable Basics
+## Assignment
+- Assigned using `let` keyword
+- Print to standard output by `print!()` or `println!()`
+- Scope of a variable is defined by the block of code in which it is declared
+- Function : Named block of code that is reusable
+- Shadowing : Allows a variable to be re-declared in the same scope with the same name
+
+## Binding and Mutability
+- A variable can be used only if has been initialized.
+```rust
+fn main() {
+    let x: i32; //Uninitialized, but used
+    // This gives an ERROR as it has not been used
+    let y: i32; // Unitialized but also unused.
+    // This gives a Warning
+
+    assert_eq!(x, 5);
+    println!("Success!");
+}
+
+```
+
+Solution?
+`let x: i32 = 5;`
+This initializes the variable.
+
+
+- Use `mut` to mark a variable as mutable. In Rust, by default a variable is immutable.
+
+```rust
+fn main() {
+    let mut x = 1;
+    x+= 2;
+    assert_eq!(x, 3);
+    println!("Success");
+}
+```
+## Scope
+A scope is the range within the program for which the item is valid
+```rust
+fn main() {
+    let x:i32 = 10;
+
+    {
+        let y: i32 = 5;
+        println!("The value of x is {} and the value of y is {}, x, y);
+    }
+    println!("The value of x is {} and y does not exist outside the above scope defined by the curly brace");
+}
+```
+```rust
+fn main() {
+    // the starting point of every rust program is the main function.
+    define_x();
+}
+fn define_x() {
+    let x: &str = "Hello";
+    pritnln!("{}, world", x);
+}
+```
+
+## Shadowing
+The first variable is shadowed by the second variable, same name and same scope.
+
+```rust
+fn main() {
+    let x: i32 = 5;
+    {
+        let x = 12;
+        assert_eq!(x, 12);
+    }
+    assert_eq(x, 5);
+
+    let x: i32 = 42;
+    println!("{}", x); // prints 42!
+}
+```
+
+Since shadowing seems like an interesting concept, let's compare it with C, shall we?
+### Pointers : C vs Rust
+Pointers are a big thing with C (being a close to low-level language) but Rust doesn't have pointers in the same way as C does. It uses references (immutable `&` and mutable `&mut`), smart pointers (`Box`, `Rc` and `Arc`), and raw poitners (`*const T`, `*mut T`). These pointers serve a similar role to C-style pointers.
+
+### Shadowing Examples
+```rust
+fn main() {
+    let x = 5;
+    let x = x + 1; // shadows previous x
+    println!("x: {}", x); // prints 6
+
+    let x = "shadowed";
+    // shadows x again!
+}
+```
+If we incorporate references (similar to pointers in C), shadowing behaves similarly, but the concept is extended to how the ownership and borrowing work in Rust.
+```rust
+fn main() {
+    let x = 5;
+    let x = &x; // Shadow x, now x is a reference to the original x (a pointer-like behavior)
+    println!("x: {}", x); // prints reference to 5
+
+    let x = &x; // Shadow x again, now x is a reference to the reference (&x)
+    println!("x: {:?}", x); // prints reference to the reference
+}
+```
+In C, shadowing isn't a formal language feature, but you can have a similar effect using pointers. Here's a simple example in C:
+
+```c
+int main() {
+    int x = 5;
+    int* ptr = &x;  // pointer to x
+    printf("%d\n", *ptr);  // prints 5
+
+    // Shadowing manually, declaring a new ptr (not true shadowing)
+    int* ptr = NULL;  // new scope hides old ptr
+    printf("%p\n", (void*)ptr);  // prints NULL pointer
+    return 0;
+}
+```
+
+- Rust: Shadowing allows creating new variables with the same name in a safe way, even with references. You can shadow a value by replacing it with a reference (which is like a pointer but with Rust's borrow-checker enforcing safety).
+- C: Although not supporting shadowing in the formal sense, C allows reusing names in different scopes. However, managing pointers and their lifetimes is entirely manual and lacks the safety guarantees that Rust provides.
+
+## Shadowing and Rebinding
+
+```rust
+fn main() {
+    let mut x: i32 = 1;
+    x = 7;
+    // Shadowing and re-Binding
+    let x = x;
+    // x = x + 3; will not compile! By default, x is being re-bound/redeclared as immutable
+
+    let y = 4;
+    let 4 = "I can also be bound to text!";
+    // Shadowing can be done changing types too!
+    println!("Success");
+}
+
+```
+
+## Unused Variables
+### Method 1
+Prepend with an underscore
+
+```rust
+fn main() {
+    let _x = 1; // no compiler warnings
+}
+
+```
+
+### Method 2
+Use compiler directives
+```rust
+#[allow(unused_variables)]
+fn main() {
+    let x = 1;
+}
+```
+The `#` is an attribute. Attributes in Rust are metadata applied to various parts of the code like functions, modules, items, etc. to modify how the Rust compiler (`rustc`) processes the annotated code. These attributes can be used for various purposes like configuring warnings, optimizing code, specifying conditional compilation, etc.
+
+`#[allow(...)]` : This attribute tells the compiler to suppress certain types of warnings for the code applied to.  
+
+`unused_variables` : This is a lint (compiler warning/recommendation) generated when we declare a variable but do not use it anywhere in teh program.
+
+#### How does `rustc` process attributes?
+** 1. Lexical Analysis **
+During the initial stage of compiling, the Rust compiler identifies and processes the attributes
+** 2. Attribute Processing **
+When the compiler encounters attributes, it interpretss them based on teh context. For example`#[allow]`, `#[warn]` and `#[deny]` are all lint-related attributes.
+** 3. No Effect on Binary **
+Attributes only affect the compiler but do not alter the resulting binary file or runtime behaviour.
+** 4. Hierarchical Application **
+Attributes can be applied to different scoeps such as modules, functions or variables and their effects are limited to the scope where they are applied.
+- At funciton level usage, they suppress warnings, etc used withing the function only.
+- At module or crate level, they suppress warnings for all functions or code within that scope.
