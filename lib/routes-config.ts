@@ -13,7 +13,16 @@ export const ROUTES: EachRoute[] = [
     href: "/getting-started",
     noLink: true,
     items: [
-      { title: "Hello,World!", href: "/hello-world" },
+      { title: "Hello World", href: "/hello-world" },
+      
+    ],
+  },
+  {
+    title: "Variables",
+    href: "/variables",
+    noLink: true,
+    items: [
+      { title: "Basics", href: "/variables-basics" },
       
     ],
   },
