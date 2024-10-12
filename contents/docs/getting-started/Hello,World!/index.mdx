@@ -1,0 +1,72 @@
+---
+title: Hello World
+description: This section provides a basic Hello World implementation
+---
+# Hello, World!
+
+## Precursor
+
+Every programming journey begins with the customary `Hello, World!` print statement. The reason I whole-heartedly support this tradition is because there is a lot that goes into setting up the seemingly-abstract pipeline from the code editor to that `Hello, World!` output on the command line.
+
+## C Compilation Process
+In a language like C, there is a certain compilation cycle that is followed.  
+A `hello` program begins as a source program/file created using an editor and saved with the language specific extension, `.c`. This is a text file, as opposed to a binary file. Running it on a system, however, requires each C statement to be translated by other programs into *machine-level* instructions. These instructions are later packaged in an *executable object program* and stored as binary disk files. Object programs are also referred to as *executable object files*.  
+Here's a somewhat cursory piepline, heavily referred to from CS:APP
+
+1. **Preprocessing**  
+   The first phase is handled by the preprocessor (`cpp`). This step processes `#` directives like `#include` and `#define`, expanding macros and including header files. The result is a new C source file, often with a `.i` extension.
+
+2. **Compilation**  
+   The actual compilation begins in this phase. The compiler translates the preprocessed C code (`.i`) into assembly language, which is a human-readable representation of machine instructions. This output is stored in a file with a `.s` extension.
+
+3. **Assembly**  
+   In this phase, the assembler (`as`) takes the assembly code and translates it into machine-level instructions, producing a binary object file (`.o` or `.obj`). However, this object file is not yet an executable.
+
+4. **Linking**  
+   Finally, the linker (`ld`) combines the object files, including any library dependencies, into a final executable. The linker resolves function calls, ensuring that your code can reference external libraries or system calls. The result is a binary executable file, such as `a.out` or `hello.exe`.
+
+Each of these stages is distinct and performs a specific function, making the C compilation process relatively modular but linear.
+
+---
+
+## Rust Compilation Process
+
+Rust, while producing similar executables, goes through a more complex compilation cycle, largely due to its emphasis on memory safety and zero-cost abstractions. Here’s a look at Rust's process:
+
+1. **Lexing and Parsing**  
+   The Rust compiler begins by tokenizing the source code, transforming the raw text into a sequence of tokens through the `rustc_lexer`. Then, the parser (`rustc_parse`) analyzes these tokens and constructs an Abstract Syntax Tree (AST), a tree-like representation of the code's structure.
+
+2. **HIR (High-Level Intermediate Representation)**  
+   The AST is then converted into a more abstract, simplified form called HIR. During this stage, Rust performs *desugaring*, which means expanding shorthand notations like loops or async functions into their full forms. HIR is used to enforce type safety and resolve traits, ensuring that the program adheres to Rust’s strict type system.
+
+3. **MIR (Mid-Level Intermediate Representation)**  
+   Next, the HIR is lowered further into MIR. This is where Rust’s borrow checker comes into play, analyzing ownership, borrowing, and lifetime rules. MIR also helps optimize the control flow and prepares the code for the next steps.
+
+4. **LLVM IR and Code Generation**  
+   Finally, Rust leverages LLVM as its backend for code generation. MIR is translated into LLVM IR (Intermediate Representation), where LLVM performs further optimizations, such as inlining, loop unrolling, and vectorization. This is ultimately compiled into machine code, producing the final binary executable.
+
+Unlike C, Rust’s compilation process includes more stages to ensure memory safety, performance optimization, and incremental compilation. Rust’s incremental system allows the compiler to avoid recompiling unchanged parts of the code, greatly speeding up development times.
+
+---
+
+## Comparison: C vs Rust Compilation Cycles
+
+While both C and Rust transform source code into executable binaries, their processes reflect different philosophies:
+
+- **Simplicity vs Safety**:  
+  C’s compilation pipeline is straightforward and designed for speed. In contrast, Rust introduces additional stages like MIR and borrow checking to ensure memory safety without sacrificing performance. 
+
+- **Intermediate Representations**:  
+  Rust uses multiple levels of intermediate representations (HIR and MIR) to perform optimizations and safety checks. C, on the other hand, directly translates code into assembly without such intermediate layers.
+
+- **Linking**:  
+  The linking process in both languages is similar in principle—merging object files and libraries to create the final executable. However, Rust also relies on LLVM for advanced optimizations, while C typically uses a more direct approach depending on the compiler.
+
+---
+
+## Fun(ner) Stuff
+```rust
+fn main() {
+    println!("Hello, World!);
+}
+```
