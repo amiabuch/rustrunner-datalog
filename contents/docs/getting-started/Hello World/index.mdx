@@ -27,8 +27,6 @@ Here's a somewhat cursory piepline, heavily referred to from CS:APP
 
 Each of these stages is distinct and performs a specific function, making the C compilation process relatively modular but linear.
 
----
-
 ## Rust Compilation Process
 
 Rust, while producing similar executables, goes through a more complex compilation cycle, largely due to its emphasis on memory safety and zero-cost abstractions. Here’s a look at Rust's process:
@@ -47,8 +45,6 @@ Rust, while producing similar executables, goes through a more complex compilati
 
 Unlike C, Rust’s compilation process includes more stages to ensure memory safety, performance optimization, and incremental compilation. Rust’s incremental system allows the compiler to avoid recompiling unchanged parts of the code, greatly speeding up development times.
 
----
-
 ## Comparison: C vs Rust Compilation Cycles
 
 While both C and Rust transform source code into executable binaries, their processes reflect different philosophies:
@@ -62,7 +58,6 @@ While both C and Rust transform source code into executable binaries, their proc
 - **Linking**:  
   The linking process in both languages is similar in principle—merging object files and libraries to create the final executable. However, Rust also relies on LLVM for advanced optimizations, while C typically uses a more direct approach depending on the compiler.
 
----
 
 ## Fun(ner) Stuff
 ```rust
