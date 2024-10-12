@@ -13,7 +13,6 @@ export const ROUTES: EachRoute[] = [
     href: "/getting-started",
     noLink: true,
     items: [
-      { title: "Introduction", href: "/introduction" },
       { title: "Hello,World!", href: "/hello-world" },
       
     ],
